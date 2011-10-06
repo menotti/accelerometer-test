@@ -177,7 +177,7 @@ public class AccelerometerManager {
             }*/
             // trigger change event
             listener.onAccelerationChanged(x, y, z);
-        	android.os.SystemClock.sleep(50);
+        	android.os.SystemClock.sleep(5);
         }
  
     };
