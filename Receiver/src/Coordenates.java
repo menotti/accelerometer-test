@@ -1,3 +1,5 @@
+
+
 public class Coordenates {
 
 	private float x;
@@ -40,4 +42,38 @@ public class Coordenates {
 		Coordenates retorno = new Coordenates(x,y,z,timestamp);
 		return retorno;
 	}
+
+	public float getX() {
+		return x;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+
+	public float getZ() {
+		return z;
+	}
+
+	public void setZ(float z) {
+		this.z = z;
+	}
+
+	public long getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
+	
+	
 }
