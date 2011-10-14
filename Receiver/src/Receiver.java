@@ -5,9 +5,13 @@ import java.net.DatagramSocket;
 public class Receiver {
 
 	public static void main(String args[]){
+		DatagramSocket socket;
 		try{
-			DatagramSocket socket = new DatagramSocket(888);
-			System.out.println("Início");
+			if (args.length > 0)
+				socket = new DatagramSocket(Integer.parseInt(args[0]));
+			else
+				socket = new DatagramSocket(888);
+			System.out.println("Listening on UDP port " + socket.getLocalPort());
 			while(true){
 				byte[] buffer = "12345678901234567890123456789012345678901".getBytes();
 
