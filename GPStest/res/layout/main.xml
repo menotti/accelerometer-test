@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	<com.google.android.maps.MapView
+				 android:id="@+id/myGMap"
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:apiKey="0iVgnNTB78vi8ZrJIwDNRo4iYVT1Y3xkvUtkisg"
+                 android:enabled="true"
+                 android:clickable="true"/>
+    <EditText 
+    			 android:id="@+id/id1"
+    			 android:layout_height="wrap_content" 
+    			 android:layout_width="fill_parent" 
+    			 android:text="My text edit this." />
+</LinearLayout>
