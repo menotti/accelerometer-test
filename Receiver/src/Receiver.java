@@ -1,6 +1,8 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-
 
 public class Receiver {
 
@@ -12,8 +14,13 @@ public class Receiver {
 			else
 				socket = new DatagramSocket(888);
 			System.out.println("Listening on UDP port " + socket.getLocalPort());
-			while(true){
-				byte[] buffer = "12345678901234567890123456789012345678901".getBytes();
+			
+			FileWriter writer = new FileWriter(new File("saida.txt"),false);
+			PrintWriter saida = new PrintWriter(writer);
+			
+			int n = 0;
+			while(n++<1000){
+				byte[] buffer = "12345678901234567890123456789012345678901234".getBytes();
 
 				DatagramPacket receive = new DatagramPacket(buffer, buffer.length);
 				socket.receive(receive);
@@ -25,10 +32,14 @@ public class Receiver {
 								   " y = " + c.getY() +
 								   " z = " + c.getZ() +
 								   " timestamp = " + c.getTimestamp());
+				
+				saida.println(c.getXvirgula()+"\t" + c.getYvirgula() + "\t" + c.getZvirgula());
 			}
+			saida.close();  
+			writer.close();
 		}
 		catch(Exception e){
-			System.out.println(e.getMessage());
+			System.out.println("Excecao - " + e.getMessage());
 		}
 	}
 }
