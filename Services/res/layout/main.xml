@@ -4,9 +4,71 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
+    <RelativeLayout 
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" 
+		android:layout_marginTop="30dip"
+		>		
+    	<ToggleButton
+    			android:textOn="Accelerometer ON"
+    			android:textOff="Accelerometer OFF"
+    			android:layout_centerInParent="true"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" 
+				android:id="@+id/AccButton" 
+				android:layout_marginLeft="10dip" 
+				android:layout_marginRight="5dip" 
+				android:textSize="20dip"
+		    />
+    </RelativeLayout>
+    <RelativeLayout  
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" 
+		android:layout_marginTop="30dip">
+    	<ToggleButton
+    			android:textOn="GPS ON"
+    			android:textOff="GPS OFF"
+    			android:layout_centerInParent="true"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" 
+				android:id="@+id/GpsButton" 
+				android:layout_marginLeft="10dip" 
+				android:layout_marginRight="5dip" 
+				android:textSize="20dip"
+		    />
+    </RelativeLayout>
+    <RelativeLayout  
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" 
+		android:layout_marginTop="30dip">
+    	<Button
+    			android:text="Start Both"
+    			android:layout_centerInParent="true"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" 
+				android:id="@+id/BothOnButton" 
+				android:layout_marginLeft="10dip" 
+				android:layout_marginRight="5dip" 
+				android:textSize="20dip"
+		    />
+    </RelativeLayout>
+    <RelativeLayout  
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" 
+		android:layout_marginTop="30dip">
+    	<Button
+    			android:text="Stop Both"
+    			android:layout_centerInParent="true"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content" 
+				android:id="@+id/BothOffButton" 
+				android:layout_marginLeft="10dip" 
+				android:layout_marginRight="5dip" 
+				android:textSize="20dip"
+		    />
+    </RelativeLayout>
 </LinearLayout>

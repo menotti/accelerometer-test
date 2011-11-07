@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
+import test.utils.DateUtils;
+
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -31,17 +33,18 @@ public class AccelerometerService extends Service
 			mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 			mSensor = mSensorManager.getSensorList(Sensor.TYPE_ACCELEROMETER).get(0);
 			mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+
+			String strDate = DateUtils.now(true);
 		
-		
-			mWriter = new FileWriter(new File("/mnt/sdcard/testes/saidaAccelerometer.txt"),false);
+			mWriter = new FileWriter(new File("/mnt/sdcard/testes/Acc " + strDate + ".txt"),false);
         	mSaida = new PrintWriter(mWriter);
     		
-    		mSaida.println("x\ty\tz\ttimestamp\t" + System.currentTimeMillis());
+    		mSaida.println(String.format("%6s%12s%12s%18s",'x','y','z',"timestamp"));
     		
     		mSaida.close();
     		mWriter.close();
     		
-    		mWriter = new FileWriter(new File("/mnt/sdcard/testes/saidaAccelerometer.txt"),true);
+    		mWriter = new FileWriter(new File("/mnt/sdcard/testes/Acc " + strDate + ".txt"),true);
         	mSaida = new PrintWriter(mWriter);
 		}
 		catch(Exception e)
@@ -49,9 +52,6 @@ public class AccelerometerService extends Service
 			Toast.makeText(getApplicationContext(), e.getMessage(),
 		  	          Toast.LENGTH_SHORT).show();
 		}
-		
-		Toast.makeText(getApplicationContext(), "Accelerometer Service succesfully started",
-	  	          Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -84,14 +84,16 @@ public class AccelerometerService extends Service
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		try{
-			mSaida.println(event.values[0] + "\t" + event.values[1] + "\t" + event.values[2] + "\t" + 
-							event.timestamp);
+			String saida = String.format("%12.8f", event.values[0]) +
+						   String.format("%12.8f", event.values[1]) +
+						   String.format("%12.8f", event.values[2]) +
+						   String.format("%14d", event.timestamp);
+			mSaida.println(saida);
 		}
 		catch (Exception e)
 		{
 			Toast.makeText(getApplicationContext(), e.getMessage(),
 	      	          Toast.LENGTH_SHORT).show();
 		}
-		
 	}
 }

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
+import test.utils.DateUtils;
+
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -28,16 +30,18 @@ public class GPSService extends Service implements LocationListener {
 		mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 		
+		String strDate = DateUtils.now(true);
 		try{
-        	mWriter = new FileWriter(new File("/mnt/sdcard/testes/saidaGPS.txt"),false);
+        	mWriter = new FileWriter(new File("/mnt/sdcard/testes/GPS " + strDate + ".txt"),false);
         	mSaida = new PrintWriter(mWriter);
     		
-    		mSaida.println("latitude\tlongitude\taltitude\tspeed\tbearing\taccuracy\ttime\t" + System.currentTimeMillis());
+    		mSaida.println(String.format("%12s%12s%9s%6s%8s%9s%13s","latitude","longitude",
+    				"altitude","speed","bearing","accuracy","timestamp"));
     		
     		mSaida.close();
     		mWriter.close();
     		
-    		mWriter = new FileWriter(new File("/mnt/sdcard/testes/saidaGPS.txt"),true);
+    		mWriter = new FileWriter(new File("/mnt/sdcard/testes/GPS " + strDate + ".txt"),true);
         	mSaida = new PrintWriter(mWriter);
         	
         }
@@ -46,18 +50,19 @@ public class GPSService extends Service implements LocationListener {
         	Toast.makeText(getApplicationContext(), e.getMessage(),
 	      	          Toast.LENGTH_SHORT).show();
         }
-		
-		Toast.makeText(getApplicationContext(), "GPS Service succesfully started",
-  	          Toast.LENGTH_SHORT).show();
-		
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
 		try{
-			mSaida.println(location.getLatitude() + "\t" + location.getLongitude() + "\t" + location.getAltitude() + "\t" + 
-							location.getSpeed() + "\t" + location.getBearing() + "\t" + location.getAccuracy() + "\t" + 
-							location.getTime());
+			String saida = String.format("%12.8f", location.getLatitude()) +
+						   String.format("%12.8f", location.getLongitude()) +
+						   String.format("%9.1f", location.getAltitude()) +
+						   String.format("%6.1f", location.getSpeed()) +
+						   String.format("%8.1f", location.getBearing()) +
+						   String.format("%9.1f", location.getAccuracy()) +
+						   String.format("%13d", location.getTime());
+			mSaida.println(saida);
 		}
 		catch (Exception e)
 		{
