@@ -22,16 +22,10 @@
 <body>
 <script type="text/javascript">
 
-	try{
-		<%
-    	Position position = new Position();
-    	%>
-    	var teste = <%=position%>
-    	document.write(teste.latitude);
-	}catch(e)
-	{
-		document.write(e.message);
-	}
+	var teste = "";
+	teste.concat("teste 1");
+	teste = teste.concat("teste 2");
+	document.writeln(teste);
     
     
 </script>
