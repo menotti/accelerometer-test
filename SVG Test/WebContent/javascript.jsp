@@ -17,18 +17,19 @@
           }
           
     }*/
-        
+        function change(text)
+    {
+    	document.getElementById("test").firstChild.data = text;
+    }
 </script>
 <body>
+<h1 id="test">ha!</h1>
 <script type="text/javascript">
 
-	var teste = "";
-	teste.concat("teste 1");
-	teste = teste.concat("teste 2");
-	document.writeln(teste);
-    
+	change(1.123456/4);
     
 </script>
+
 <!-- input type="file" value="arquivo" id="arquivo">
 <br><br>
 <input type="button" value ="exibir conteudo arquivo" onclick="lerArquivo()"> -->
