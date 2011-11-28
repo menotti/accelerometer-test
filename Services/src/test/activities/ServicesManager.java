@@ -12,7 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ToggleButton;
 
-public class ServicesActivity extends Activity {
+public class ServicesManager extends Activity {
 	
 	private boolean mAccRunning = false;
 	private boolean mGPSRunning = false;
