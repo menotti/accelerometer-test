@@ -8,7 +8,19 @@
 <title>Apresentação</title>
 </head>
 <body>
-	<a href="Acelerometro.jsp">Acelerômetro</a>
-	<a href="GPS.jsp">GPS</a>
+<div>
+	<h3 style="font-family:verdana;">Acelerômetro</h3>
+	<form action="Acelerometro.jsp" method="get">
+		<input name="local" type="text" value="Caminho completo do arquivo" size="50"></input>
+		<input type="submit" value="Ir" name="Ir"></input>
+	</form>
+</div>
+<div>
+	<h3 style="font-family:verdana;">GPS</h3>
+	<form action="GPS.jsp" method="get">
+		<input name="local" type="text" value="Caminho completo do arquivo" size="50"></input>
+		<input type="submit" value="Ir" name="Ir"></input>
+	</form>
+</div>
 </body>
 </html>

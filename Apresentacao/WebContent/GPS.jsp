@@ -175,7 +175,9 @@
 
    <body> 
        <div id="map" style="width: 1000px; height: 450px"></div>
-       
+       <form action="GPS.jsp" method="get">
+       	<input name="local" type="hidden" value="<%=request.getParameter("local") %>"/>
+       </form>
        <div id="distancia" style="width: 1000px; height: 30px; font-family: verdana; font-size: 12; font-weight: bold" > 
        <script type="text/javascript"> 
 
@@ -183,7 +185,7 @@
       			
 			try{
 				<%
-					FileInputStream fstream = new FileInputStream("C:\\Users\\Carlos\\Desktop\\GPS 27-11 20.07.42.txt");
+					FileInputStream fstream = new FileInputStream(request.getParameter("local"));
 					DataInputStream in = new DataInputStream(fstream);
 			  		BufferedReader br = new BufferedReader(new InputStreamReader(in));
 

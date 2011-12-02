@@ -15,18 +15,59 @@
 	height:200px;
 	width:1000px;
 }
+.menu {
+	font-family:verdana;
+	height:30px;
+	width:1000px;
+}
 </style>
 </head>
 	<body>
+	<form action="Acelerometro.jsp" method="get">
+		<div class="menu">
+			Passo das amostras em pixels: 
+			<input name="1" type="submit" value="1"></input>
+			<input name="2" type="submit" value="2"></input>
+			<input name="3" type="submit" value="3"></input>
+			<input name="4" type="submit" value="4"></input>
+			<input name="5" type="submit" value="5"></input>
+			<input name="6" type="submit" value="6"></input>
+			<input name="7" type="submit" value="7"></input>
+			<input name="8" type="submit" value="8"></input>
+			<input name="9" type="submit" value="9"></input>
+			<input name="10" type="submit" value="10"></input>
+			<input name="local" type="hidden" value="<%=request.getParameter("local") %>"/>
+		</div>
+	</form>
 	<%
 	String coordenadasx = "";
 	String coordenadasy = "";
 	String coordenadasz = "";
+	int passo = 3;
+	if(request.getParameter("1")!=null)
+		passo = 1;
+	else if(request.getParameter("2")!=null)
+		passo = 2;
+	else if(request.getParameter("4")!=null)
+		passo = 4;
+	else if(request.getParameter("5")!=null)
+		passo = 5;
+	else if(request.getParameter("6")!=null)
+		passo = 6;
+	else if(request.getParameter("7")!=null)
+		passo = 7;
+	else if(request.getParameter("8")!=null)
+		passo = 8;
+	else if(request.getParameter("9")!=null)
+		passo = 9;
+	else if(request.getParameter("10")!=null)
+		passo = 10;
 	
 		try{
 		  // Open the file that is the first 
 		  // command line parameter
-		  FileInputStream fstream = new FileInputStream("C:\\Users\\Carlos\\Desktop\\Acc 27-11 20.07.42.txt");
+		  FileInputStream fstream = new FileInputStream(request.getParameter("local"));
+		 
 		  // Get the object of DataInputStream
 		  DataInputStream in = new DataInputStream(fstream);
 		  BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -38,8 +79,8 @@
 			  %><div class="estilo">
 	 			<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><%
 		  //Read File Line By Line
-		  	//long currTime = 0;
-		  	//long lastTime = 0;
+		  	long currTime = 0;
+		  	long lastTime = 0;
 			  while ((strLine = br.readLine()) != null && i<1000)   {
 			  // Print the content on the console
 			  		String strx = strLine.substring(0, 12);
@@ -54,30 +95,29 @@
 			  		strz = strz.replace(',', '.');
 			 		float z = 100 - 5*Float.valueOf(strz);
 			 		
-			 		/*String strt = strLine.substring(37, 50);
+			 		String strt = strLine.substring(37, 50);
+			 		strt = strt.replace(" ", "");
 			 		long time = Long.valueOf(strt);
 			  		
-			 		currTime = time;*/
-			  		
-			 		
+			 		currTime = time;
 			  		//float total = 100 - x*5;
 		 			
-			 		coordenadasx = coordenadasx.concat(i++ + "," + x + " ");
-			 		coordenadasy = coordenadasy.concat(i++ + "," + y + " ");
-			 		coordenadasz = coordenadasz.concat(i++ + "," + z + " ");
+			 		coordenadasx = coordenadasx.concat(i + "," + x + " ");
+			 		coordenadasy = coordenadasy.concat(i + "," + y + " ");
+			 		coordenadasz = coordenadasz.concat(i + "," + z + " ");
 			 		
-		 			i++;
-		 			if(i%40==0){//currTime-lastTime>=500000000){
+		 			if(currTime-lastTime>=500000000){
 		 				%>
 	 					<polyline points="<%=i%>,0 <%=i%>,200" style="fill:none;stroke:black;stroke-width:1" />
 	 					<%
-	 					//lastTime=currTime;
+	 					lastTime=currTime;
 		 			}
+		 			i+=passo;
 			  }
 		  %>
-					<polyline points="<%=coordenadasx%>" style="fill:none;stroke:red;stroke-width:2" />
-					<polyline points="<%=coordenadasy%>" style="fill:none;stroke:green;stroke-width:2" />
-					<polyline points="<%=coordenadasz%>" style="fill:none;stroke:blue;stroke-width:2" />
+					<polyline points="<%=coordenadasx%>" style="fill:none;stroke:red;stroke-width:1" />
+					<polyline points="<%=coordenadasy%>" style="fill:none;stroke:green;stroke-width:1" />
+					<polyline points="<%=coordenadasz%>" style="fill:none;stroke:blue;stroke-width:1" />
 					<polyline points="0,100 1000,100" style="fill:none;stroke:black;stroke-width:1" />
 					<polyline points="0,0 0,200" style="fill:none;stroke:black;stroke-width:1" />
 					<polyline points="1000,0 1000,200" style="fill:none;stroke:black;stroke-width:1" />
