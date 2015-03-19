@@ -1,0 +1,1 @@
+Testing the behaviour of the accelerometer in an Android Phone
